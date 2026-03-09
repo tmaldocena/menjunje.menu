@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Menjunje - Menu Digital</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'menjunje-blue': '#2E5094',
+                        'menjunje-cream': '#FDF9F0',
+                        'menjunje-orange': '#F59E0B',
+                    },
+                    fontFamily: {
+                        'rounded': ['Fredoka', 'sans-serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style data-purpose="backgrounds">
+        .grid-bg {
+            background-color: #FDF9F0;
+            background-image:
+                linear-gradient(to right, rgba(46, 80, 148, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(46, 80, 148, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .curved-top {
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            box-shadow: 0 -10px 40px rgba(46, 80, 148, 0.1);
+        }
+
+        /* Ocultar barra de scroll para un look más limpio en móvil */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(46, 80, 148, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+    <style data-purpose="typography">
+        .logo-text {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            color: #2E5094;
+        }
+
+        .item-title {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+
+        .item-description {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            opacity: 0.85;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-menjunje-cream font-sans text-menjunje-blue antialiased selection:bg-menjunje-orange selection:text-white">
+
+    <!-- LOADER (Se oculta al cargar los precios) -->
+    <div id="loader"
+        class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-menjunje-cream transition-opacity duration-500">
+        <img src="logo.svg" alt="Menjunje" class="w-48 h-auto mb-4 animate-pulse" />
+        <div class="h-1 w-24 bg-menjunje-blue/20 rounded-full overflow-hidden">
+            <div class="h-full bg-menjunje-orange w-1/2 rounded-full animate-[bounce_1s_infinite]"></div>
+        </div>
+    </div>
+
+    <!-- BEGIN: MainHeader -->
+    <header class="grid-bg py-10 flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
+        <!-- Decoraciones sutiles -->
+        <div class="absolute top-10 left-[-20px] w-24 h-24 bg-menjunje-orange/10 rounded-full blur-2xl"></div>
+        <div class="absolute bottom-10 right-[-20px] w-32 h-32 bg-menjunje-blue/10 rounded-full blur-2xl"></div>
+
+        <p class="italic text-sm mb-2 text-menjunje-blue/70">bienvenidos a</p>
+        <img src="logo.svg" alt="menjunje"
+            class="w-64 h-auto mb-8 hover:scale-105 transition-transform duration-300 cursor-default" />
+
+        <div class="flex justify-center items-center gap-6 mb-10 text-menjunje-blue/80 text-sm font-medium">
+            <a href="https://maps.app.goo.gl/gQPqj5W1MKADmpue6" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-1 hover:text-menjunje-orange transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-lg">location_on</span>
+                <span>Nuestra Ubicación</span>
+            </a>
+            <a href="https://www.instagram.com/menjunjesl/" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-1 hover:text-menjunje-orange transition-colors cursor-pointer">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                </svg>
+                <span>Instagram</span>
+            </a>
+        </div>
+
+        <!-- BEGIN: Bakery & Bowls Section -->
+        <section class="w-full max-w-md space-y-2" data-purpose="bakery-menu">
+
+            <!-- Items de Bakery -->
+            <div
+                class="menu-item opacity-0 translate-y-6 transition-all duration-700 ease-out group p-3 -mx-3 rounded-2xl hover:bg-white hover:shadow-[0_4px_20px_-10px_rgba(46,80,148,0.2)] hover:-translate-y-1">
+                <div
+                    class="flex justify-between items-baseline border-b border-menjunje-blue/10 pb-2 group-hover:border-transparent transition-colors duration-300">
+                    <span class="item-title group-hover:text-menjunje-orange transition-colors">MEDIALUNA DE
+                        MANTECA</span>
+                    <span
+                        class="price-tag font-bold text-sm bg-menjunje-blue/5 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all transform group-hover:scale-105"
+                        data-price-id="medialuna-manteca">$3500</span>
+                </div>
+            </div>
+
+            <div
+                class="menu-item opacity-0 translate-y-6 transition-all duration-700 ease-out group p-3 -mx-3 rounded-2xl hover:bg-white hover:shadow-[0_4px_20px_-10px_rgba(46,80,148,0.2)] hover:-translate-y-1">
+                <div
+                    class="flex justify-between items-baseline border-b border-menjunje-blue/10 pb-2 group-hover:border-transparent transition-colors duration-300">
+                    <span class="item-title group-hover:text-menjunje-orange transition-colors">MEDIALUNA CON JYQ</span>
+                    <span
+                        class="price-tag font-bold text-sm bg-menjunje-blue/5 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all transform group-hover:scale-105"
+                        data-price-id="medialuna-jyq">$5000</span>
+                </div>
+            </div>
+
+            <div
+                class="menu-item opacity-0 translate-y-6 transition-all duration-700 ease-out group p-3 -mx-3 rounded-2xl hover:bg-white hover:shadow-[0_4px_20px_-10px_rgba(46,80,148,0.2)] hover:-translate-y-1">
+                <div
+                    class="flex justify-between items-baseline border-b border-menjunje-blue/10 pb-2 group-hover:border-transparent transition-colors duration-300">
+                    <span class="item-title group-hover:text-menjunje-orange transition-colors">CHIPA 4 QUESOS</span>
+                    <span
+                        class="price-tag font-bold text-sm bg-menjunje-blue/5 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all transform group-hover:scale-105"
+                        data-price-id="chipa-4-quesos">$5000</span>
+                </div>
+            </div>
+
+            <div
+                class="menu-item opacity-0 translate-y-6 transition-all duration-700 ease-out group p-3 -mx-3 rounded-2xl hover:bg-white hover:shadow-[0_4px_20px_-10px_rgba(46,80,148,0.2)] hover:-translate-y-1">
+                <div
+                    class="flex justify-between items-baseline border-b border-menjunje-blue/10 pb-2 group-hover:border-transparent transition-colors duration-300">
+                    <span class="item-title group-hover:text-menjunje-orange transition-colors">COOKIE</span>
+                    <span
+                        class="price-tag font-bold text-sm bg-menjunje-blue/5 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all transform group-hover:scale-105"
+                        data-price-id="cookie">$4500</span>
+                </div>
+            </div>
+
+            <div
+                class="menu-item opacity-0 translate-y-6 transition-all duration-700 ease-out group p-3 -mx-3 rounded-2xl hover:bg-white hover:shadow-[0_4px_20px_-10px_rgba(46,80,148,0.2)] hover:-translate-y-1">
+                <div
+                    class="flex justify-between items-baseline border-b border-menjunje-blue/10 pb-2 group-hover:border-transparent transition-colors duration-300">
+                    <span class="item-title group-hover:text-menjunje-orange transition-colors">PORCIÓN DE BUDIN</span>
+                    <span
+                        class="price-tag font-bold text-sm bg-menjunje-blue/5 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all transform group-hover:scale-105"
+                        data-price-id="porcion-budin">$4000</span>
+                </div>
+            </div>
+
+            <!-- Complex Items -->
+            <div
+                class="menu-item opacity-0 translate-y-6 transition-all duration-700 ease-out group p-3 -mx-3 rounded-2xl hover:bg-white hover:shadow-[0_4px_20px_-10px_rgba(46,80,148,0.2)] hover:-translate-y-1 text-left mt-2">
+                <div class="flex justify-between items-baseline mb-1">
+                    <span class="item-title group-hover:text-menjunje-orange transition-colors">AVO TOAST</span>
+                    <span
+                        class="price-tag font-bold text-sm bg-menjunje-blue/5 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all transform group-hover:scale-105"
+                        data-price-id="avo-toast">$11000</span>
+                </div>
+                <p class="item-description italic transition-opacity group-hover:opacity-100">en pan de japonés, queso
+                    crema, huevos revueltos, palta, brotes y polvo de chile y lima (no es picante)</p>
+            </div>
+
+            <div
+                class="menu-item opacity-0 translate-y-6 transition-all duration-700 ease-out group p-3 -mx-3 rounded-2xl hover:bg-white hover:shadow-[0_4px_20px_-10px_rgba(46,80,148,0.2)] hover:-translate-y-1 text-left">
+                <div class="flex justify-between items-baseline mb-1">
+                    <span class="item-title group-hover:text-menjunje-orange transition-colors">TOSTADO</span>
+                    <span
+                        class="price-tag font-bold text-sm bg-menjunje-blue/5 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all transform group-hover:scale-105"
+                        data-price-id="tostado">$11500</span>
+                </div>
+                <p class="item-description italic transition-opacity group-hover:opacity-100">entre pan japonés, jamón y
+                    muza, queso crema, dorado con manteca</p>
+            </div>
+
+            <div
+                class="menu-item opacity-0 translate-y-6 transition-all duration-700 ease-out group p-3 -mx-3 rounded-2xl hover:bg-white hover:shadow-[0_4px_20px_-10px_rgba(46,80,148,0.2)] hover:-translate-y-1 text-left">
+                <div class="flex justify-between items-baseline mb-1">
+                    <span class="item-title group-hover:text-menjunje-orange transition-colors">YOGURT CON
+                        GRANOLA</span>
+                    <span
+                        class="price-tag font-bold text-sm bg-menjunje-blue/5 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all transform group-hover:scale-105"
+                        data-price-id="yogurt-granola">$7500</span>
+                </div>
+                <p class="item-description italic transition-opacity group-hover:opacity-100">almíbar de naranja y
+                    frutas frescas</p>
+            </div>
+
+            <div
+                class="menu-item opacity-0 translate-y-6 transition-all duration-700 ease-out group p-3 -mx-3 rounded-2xl hover:bg-white hover:shadow-[0_4px_20px_-10px_rgba(46,80,148,0.2)] hover:-translate-y-1 text-left">
+                <div class="flex justify-between items-baseline mb-1">
+                    <span class="item-title group-hover:text-menjunje-orange transition-colors">HUEVOS REVUELTOS</span>
+                    <span
+                        class="price-tag font-bold text-sm bg-menjunje-blue/5 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all transform group-hover:scale-105"
+                        data-price-id="huevos-revueltos">$9000</span>
+                </div>
+                <p class="item-description italic transition-opacity group-hover:opacity-100">polvo de chile y lima,
+                    brotes, aceite de oliva y rodaja de pan japonés</p>
+            </div>
+
+            <p
+                class="text-sm font-semibold mt-8 py-3 px-6 bg-white shadow-sm border border-menjunje-blue/5 rounded-full inline-block animate-bounce text-menjunje-orange">
+                ¡Consultanos por las opciones sin TACC!
+            </p>
+        </section>
+    </header>
+    <!-- END: MainHeader -->
+
+    <!-- BEGIN: CoffeeSection -->
+    <main
+        class="bg-menjunje-blue text-white curved-top px-6 pt-16 pb-16 mt-[-20px] relative z-10 transition-colors duration-500">
+        <div class="max-w-md mx-auto">
+
+            <!-- Intro Tagline -->
+            <div class="text-center mb-12 px-4 menu-item opacity-0 translate-y-6 transition-all duration-700">
+                <p class="text-xs uppercase tracking-widest text-menjunje-orange mb-3 font-semibold">En Tolva</p>
+                <div class="w-12 h-0.5 bg-menjunje-orange/50 mx-auto mb-4"></div>
+                <p class="text-sm leading-relaxed opacity-90" data-text-id="en-tolva">Tenemos Brasil, equilibrado y con
+                    impronta. Consulta por el café para filtrados :)</p>
+            </div>
+
+            <!-- Category: Solo Cafe -->
+            <section class="mb-12" data-purpose="solo-cafe">
+                <h2
+                    class="text-menjunje-orange font-bold text-xl mb-6 flex items-center gap-3 menu-item opacity-0 translate-y-6 transition-all duration-700">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 21h18v-2H2v2zM20 8h-2V5h2v3zm2-5h-6v5h6V3zM4 19h12v-9H4v9zM14 5H4v3h10V5z"></path>
+                    </svg>
+                    <span>SOLO CAFÉ</span>
+                    <div class="h-[1px] flex-grow bg-white/10 ml-2"></div>
+                </h2>
+
+                <div class="space-y-1">
+                    <!-- Helper component for list items -->
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">ESPRESSO</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="espresso">$3500</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">DOPPIO</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="doppio">$4000</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">FILTRADO
+                                V60</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="filtrado-v60">$5500</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">FILTRADO
+                                CHEMEX</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="filtrado-chemex">$6000</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">COLD
+                                BREW</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="cold-brew">$5500</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">AMERICANO</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="americano">$4500</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Category: Con Leche -->
+            <section class="mb-12" data-purpose="con-leche">
+                <h2
+                    class="text-menjunje-orange font-bold text-xl mb-6 flex items-center gap-3 menu-item opacity-0 translate-y-6 transition-all duration-700">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M4 19h16v2H4v-2zM20 3H4v10c0 2.21 1.79 4 4 4h8c2.21 0 4-1.79 4-4V3zm-2 10c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V5h12v8z">
+                        </path>
+                    </svg>
+                    <span>CON LECHE</span>
+                    <div class="h-[1px] flex-grow bg-white/10 ml-2"></div>
+                </h2>
+
+                <div class="space-y-2">
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <span
+                                class="font-bold tracking-wide group-hover:text-menjunje-orange transition-colors">CORTADO
+                                <span class="text-xs font-normal opacity-70">(90ML)</span></span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all delay-75"
+                                data-price-id="cortado">$4000</span>
+                        </div>
+                        <p class="text-xs opacity-70 italic group-hover:opacity-100 transition-opacity">shot de espresso
+                            + leche</p>
+                    </div>
+
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <span
+                                class="font-bold tracking-wide group-hover:text-menjunje-orange transition-colors">LATTE
+                                <span class="text-xs font-normal opacity-70">(290ML)</span></span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all delay-75"
+                                data-price-id="latte">$5000</span>
+                        </div>
+                        <p class="text-xs opacity-70 italic group-hover:opacity-100 transition-opacity">shot de espresso
+                            + leche</p>
+                    </div>
+
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <span
+                                class="font-bold tracking-wide group-hover:text-menjunje-orange transition-colors">CARAMEL
+                                LATTE <span class="text-xs font-normal opacity-70">(290ML)</span></span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all delay-75"
+                                data-price-id="caramel-latte">$5500</span>
+                        </div>
+                        <p class="text-xs opacity-70 italic group-hover:opacity-100 transition-opacity">café con leche y
+                            syrup de caramelo</p>
+                    </div>
+
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <span
+                                class="font-bold tracking-wide group-hover:text-menjunje-orange transition-colors">VAINILLA
+                                LATTE <span class="text-xs font-normal opacity-70">(290ML)</span></span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all delay-75"
+                                data-price-id="vainilla-latte">$5500</span>
+                        </div>
+                        <p class="text-xs opacity-70 italic group-hover:opacity-100 transition-opacity">café con leche y
+                            syrup de vainilla</p>
+                    </div>
+
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <span
+                                class="font-bold tracking-wide group-hover:text-menjunje-orange transition-colors">FLAT
+                                WHITE <span class="text-xs font-normal opacity-70">(260ML)</span></span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all delay-75"
+                                data-price-id="flat-white">$5000</span>
+                        </div>
+                        <p class="text-xs opacity-70 italic group-hover:opacity-100 transition-opacity">doble shot de
+                            espresso + leche</p>
+                    </div>
+
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <span
+                                class="font-bold tracking-wide group-hover:text-menjunje-orange transition-colors">CAPUCCINO
+                                <span class="text-xs font-normal opacity-70">(260ML)</span></span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all delay-75"
+                                data-price-id="capuccino">$4500</span>
+                        </div>
+                        <p class="text-xs opacity-70 italic group-hover:opacity-100 transition-opacity">shot de espresso
+                            + leche</p>
+                    </div>
+
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <span
+                                class="font-bold tracking-wide group-hover:text-menjunje-orange transition-colors">MOCACCINO
+                                <span class="text-xs font-normal opacity-70">(260ML)</span></span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all delay-75"
+                                data-price-id="mocaccino">$5500</span>
+                        </div>
+                        <p class="text-xs opacity-70 italic group-hover:opacity-100 transition-opacity">shot de espresso
+                            + leche + chocolate</p>
+                    </div>
+                </div>
+
+                <div
+                    class="mt-8 p-5 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/10 shadow-lg menu-item opacity-0 translate-y-6 transition-all duration-700 relative overflow-hidden group hover:border-menjunje-orange/50">
+                    <div
+                        class="absolute -right-4 -top-4 w-16 h-16 bg-menjunje-orange/20 rounded-full blur-xl group-hover:bg-menjunje-orange/40 transition-colors">
+                    </div>
+
+                    <div class="flex justify-between font-bold mb-3 items-center relative z-10">
+                        <span class="text-menjunje-orange tracking-wide">EXTRA SHOT</span>
+                        <span class="font-bold text-sm bg-menjunje-orange text-white px-3 py-1 rounded-full shadow-md"
+                            data-price-id="extra-shot">$1500</span>
+                    </div>
+                    <p class="text-sm italic mb-2 relative z-10 text-white/90">También pedilo frío :)</p>
+                    <p class="text-xs text-white/70 relative z-10 leading-relaxed">Tenemos leche deslactosada, vegetal,
+                        entera y descremada, sin cargo adicional.</p>
+                </div>
+            </section>
+
+            <!-- Category: Varios -->
+            <section class="mb-10" data-purpose="varios">
+                <h2
+                    class="text-menjunje-orange font-bold text-xl mb-6 flex items-center gap-3 menu-item opacity-0 translate-y-6 transition-all duration-700">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 5V3H3v2l8 9v5H6v2h12v-2h-5v-5l8-9zM7.43 7L5.66 5h12.69l-1.78 2H7.43z"></path>
+                    </svg>
+                    <span>VARIOS</span>
+                    <div class="h-[1px] flex-grow bg-white/10 ml-2"></div>
+                </h2>
+
+                <div class="space-y-1">
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">ESPRESSO
+                                TONIC</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="espresso-tonic">$5500</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">ORANGE
+                                AMERICANO</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="orange-americano">$5500</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">MATE
+                                COCIDO</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="mate-cocido">$3000</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">EXPRIMIDO
+                                NARANJA</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="exprimido-naranja">$4500</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">LIMONADA</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="limonada">$4500</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">AGUA
+                                MINERAL</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="agua-mineral">$2000</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">VASO
+                                DE SODA O AGUA</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="vaso-soda-agua">$1000</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">JARRA
+                                DE SODA/AGUA</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="jarra-soda-agua">$3000</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">CERVEZA
+                                CORONA 330cc</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="cerveza-corona">$5500</span>
+                        </div>
+                    </div>
+                    <div
+                        class="menu-item opacity-0 translate-y-6 transition-all duration-700 group p-3 -mx-3 rounded-2xl hover:bg-white/10 hover:-translate-y-1 cursor-default">
+                        <div
+                            class="flex justify-between items-baseline border-b border-white/10 pb-2 group-hover:border-transparent transition-colors">
+                            <span
+                                class="font-medium tracking-wide group-hover:text-menjunje-orange transition-colors">VERMÚ
+                                SODA/TONICA</span>
+                            <span
+                                class="font-bold text-sm bg-white/10 px-3 py-1 rounded-full group-hover:bg-menjunje-orange group-hover:text-white transition-all"
+                                data-price-id="vermu-soda">$5500</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- END: CoffeeSection -->
+
+    <!-- BEGIN: MainFooter -->
+    <footer class="bg-menjunje-blue text-white px-8 pb-16 pt-4 text-center relative z-10">
+        <div class="max-w-md mx-auto space-y-6 opacity-80 border-t border-white/10 pt-10">
+            <p class="text-sm italic font-light tracking-wide">Nuestros productos están hechos por nosotros, en casa,
+                todo fresco.</p>
+            <div class="flex flex-col items-center gap-3">
+                <svg class="h-8 w-8 text-menjunje-orange animate-pulse" fill="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z">
+                    </path>
+                </svg>
+                <p class="text-sm">El café que utilizamos es de nuestros amigos de <br><a href="#"
+                        class="font-bold text-menjunje-orange hover:text-white transition-colors">@tabtostadores</a> de
+                    San Juan :)</p>
+            </div>
+            <p class="text-xs pt-8 opacity-40">Diseñado con ❤️ para Menjunje</p>
+        </div>
+    </footer>
+    <!-- END: MainFooter -->
+
+    <!-- ============================================== -->
+    <!-- SCRIPTS PARA ANIMACIONES Y GOOGLE SHEETS       -->
+    <!-- ============================================== -->
+    <script>
+        // 1. ANIMACIONES ESCALONADAS AL HACER SCROLL
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Pequeño retraso automático (cascade) basado en el índice local
+                        setTimeout(() => {
+                            entry.target.classList.remove('opacity-0', 'translate-y-6');
+                            entry.target.classList.add('opacity-100', 'translate-y-0');
+                        }, index * 50); // 50ms de retraso por elemento
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => observer.observe(item));
+        });
+
+        // ==============================================================
+        // 2. INTEGRACIÓN CON GOOGLE SHEETS PARA CAMBIOS DE PRECIOS Y TEXTOS
+        // ==============================================================
+
+        // 👉 PASO 1: Reemplaza esta URL con el enlace CSV de tu Google Sheet publicado
+        // Deja vacío ('') si no quieres usar Google Sheets y prefieres los precios del HTML
+        const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTw3VA33D_O4TaP4A_88FdVt7fTlfZyXSFk6JIpCJmF6f6PyCCvXg_Vde5JfDeAk9QAb6MQxnS84m1a/pub?output=csv';
+
+        // EJEMPLO de cómo se vería la URL:
+        // const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT.../pub?gid=0&single=true&output=csv';
+
+        // Función auxiliar para leer líneas CSV (evita problemas si el dueño pone comas en la descripción del café)
+        function parsearFilaCSV(cadena) {
+            let matches = [];
+            let inQuotes = false;
+            let currentValue = '';
+            for (let i = 0; i < cadena.length; i++) {
+                let char = cadena[i];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    matches.push(currentValue.trim());
+                    currentValue = '';
+                } else {
+                    currentValue += char;
+                }
+            }
+            matches.push(currentValue.trim());
+            return matches;
+        }
+
+        async function cargarPrecios() {
+            const loader = document.getElementById('loader');
+
+            if (!GOOGLE_SHEET_CSV_URL) {
+                // Si no hay tabla de Google, quitamos el loader y usamos precios por defecto
+                setTimeout(() => {
+                    loader.classList.add('opacity-0', 'pointer-events-none');
+                }, 500);
+                return;
+            }
+
+            try {
+                // Al agregar el timestamp para evitar la caché, Google bloquea la petición por CORS.
+                // Lo solucionamos usando un proxy público y gratuito que pide el archivo por nosotros.
+                const sheetUrl = GOOGLE_SHEET_CSV_URL + '&t=' + new Date().getTime();
+                const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(sheetUrl);
+                
+                const response = await fetch(proxyUrl);
+                if (!response.ok) throw new Error('Respuesta de red no fue ok');
+                const data = await response.text();
+
+                // Separamos por enter o fin de línea
+                const rows = data.split(/\r?\n/);
+
+                rows.forEach(row => {
+                    // Usamos nuestra función segura para separar columnas
+                    const columns = parsearFilaCSV(row);
+                    if (columns.length >= 2) {
+                        const id = columns[0]; // Ejemplo: medialuna-manteca o en-tolva
+                        const valor = columns[1]; // Ejemplo: 4000 o "Tenemos café de Colombia"
+
+                        // 1. Buscamos si es un Precio (data-price-id)
+                        const elementoPrecio = document.querySelector(`[data-price-id="${id}"]`);
+                        if (elementoPrecio && valor) {
+                            elementoPrecio.innerText = `$${valor.trim()}`;
+                        }
+
+                        // 2. Buscamos si es un Texto dinámico (data-text-id)
+                        const elementoTexto = document.querySelector(`[data-text-id="${id}"]`);
+                        if (elementoTexto && valor) {
+                            // En el caso de que alguien ponga accidentalmente 'nada' en excel, lo mostramos
+                            elementoTexto.innerText = valor.trim();
+                        }
+                    }
+                });
+
+                // Precios cargados con éxito, ocultamos el loader
+                loader.classList.add('opacity-0', 'pointer-events-none');
+
+            } catch (error) {
+                console.error('Error al cargar la lista de precios:', error);
+                // Si falla por falta de internet, mostramos los que están por defecto y quitamos el loader
+                loader.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        // Ejecutar la carga al iniciar
+        window.addEventListener('load', cargarPrecios);
+    </script>
+</body>
+
+</html>
+
+<!---
+<!-- Copias esto y le pones el nombre nuevo
+<div class="menu-item opacity-0 translate-y-6 ...">
+    <div class="flex justify-between items-baseline ...">
+        <span class="font-medium tracking-wide ...">TÉ VERDE</span>
+        <!-- ¡Importante! Le inventas un ID nuevo aquí: 
+        <span class="font-bold text-sm bg-white/10 ..." data-price-id="te-verde">$0000</span>
+    </div>
+</div>
+--!>
